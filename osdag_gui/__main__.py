@@ -28,7 +28,7 @@ class LoadingThread(QThread):
     def create_sqlite(self):
         import sqlite3
         import subprocess
-        from importlib_resources import files
+        from importlib.resources import files
         import shutil
         
         try:
