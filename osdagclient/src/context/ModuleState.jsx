@@ -5,7 +5,7 @@ import ModuleReducer from "./ModuleReducer";
 import { decode as base64_decode, encode as base64_encode } from "base-64";
 import { MODULE_KEY_FIN_PLATE, MODULE_DISPLAY_FIN_PLATE } from '../constants/DesignKeys';
 import { createDesign as apiCreateDesign, createDesignReport as apiCreateDesignReport, populateModule } from '../modules/shared/api/moduleApi';
-
+import { apiBase } from "../api";
 /* 
     ######################################################### 
     # Author : Atharva Pingale ( FOSSEE Summer Fellow '23 ) # 
@@ -76,7 +76,8 @@ let initialValue = {
   },
 };
 
-const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = `${apiBase}`;
+
 
 //create context
 export const ModuleContext = createContext(initialValue);
@@ -115,7 +116,8 @@ export const ModuleProvider = ({ children }) => {
 
       // Build URL with parameters
       const email = localStorage.getItem("email");
-      let url = `${BASE_URL}populate?moduleName=${moduleName}`;
+      const cleanedBase = BASE_URL.split("api/")[0];
+      let url = `${cleanedBase}populate?moduleName=${moduleName}`;
 
       if (options.connectivity) {
         url += `&connectivity=${encodeURIComponent(options.connectivity)}`;
