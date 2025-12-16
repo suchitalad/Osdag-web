@@ -303,7 +303,7 @@ function UnifiedDropdownMenu({
         // Update project's osi_file_path via projectId from URL
         if (pid && data.url) {
           try {
-            const upd = await fetch(`${BASE_URL}projects/${pid}/`, {
+            const upd = await fetch(`${BASE_URL}api/projects/${pid}/`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',

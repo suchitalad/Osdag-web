@@ -43,7 +43,7 @@ const ProjectsListCard = ({ projects: projectsProp = [], loading: loadingProp = 
   const navigate = useNavigate();
 
   // const BASE_URL = 'http://localhost:8000/api/';
-  const BASE_URL = `${apiBase}/api/`;
+  const BASE_URL = `${apiBase}`;
 
   const getAccessToken = () => (
     localStorage.getItem('access') || localStorage.getItem('token') || ''
@@ -62,7 +62,7 @@ const ProjectsListCard = ({ projects: projectsProp = [], loading: loadingProp = 
       const fetchRecentProjects = async () => {
         setLoading(true);
         try {
-          const res = await fetch(`${BASE_URL}projects/`, {
+          const res = await fetch(`${BASE_URL}api/projects/`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const ProjectsListCard = ({ projects: projectsProp = [], loading: loadingProp = 
   };
 
   const fetchProjectDetail = async (projectId) => {
-    const res = await fetch(`${BASE_URL}projects/${projectId}/`, {
+    const res = await fetch(`${BASE_URL}api/projects/${projectId}/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ const ProjectsListCard = ({ projects: projectsProp = [], loading: loadingProp = 
 
   const handleOpenProject = async (project) => {
     try {
-      const response = await fetch(`${BASE_URL}projects/${project.id}/`, {
+      const response = await fetch(`${BASE_URL}api/projects/${project.id}/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ const ProjectsListCard = ({ projects: projectsProp = [], loading: loadingProp = 
 
   const handleDownloadOsi = async (project) => {
     try {
-      const detailRes = await fetch(`${BASE_URL}projects/${project.id}/`, {
+      const detailRes = await fetch(`${BASE_URL}api/projects/${project.id}/`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getAccessToken()}` },
       });

@@ -124,7 +124,7 @@ export const EngineeringModule = ({
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   // Auth helpers
   // const BASE_URL = 'http://localhost:8000/api/';
-  const BASE_URL = `${apiBase}/api/`;
+  const BASE_URL = `${apiBase}`;
   const getAccessToken = () => localStorage.getItem('access') || localStorage.getItem('token') || '';
   const isGuest = () => (localStorage.getItem('userType') === 'guest');
   const location = useLocation();
@@ -149,7 +149,7 @@ export const EngineeringModule = ({
     }
     (async () => {
       try {
-        const res = await fetch(`${BASE_URL}projects/${projectId}/`, {
+        const res = await fetch(`${BASE_URL}api/projects/${projectId}/`, {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${getAccessToken()}` },
         });
@@ -231,7 +231,7 @@ export const EngineeringModule = ({
         const pid = getProjectIdFromUrl();
         if (pid && !Number.isNaN(pid)) {
           try {
-            await fetch(`${BASE_URL}projects/${pid}/`, {
+            await fetch(`${BASE_URL}api/projects/${pid}/`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -400,7 +400,7 @@ export const EngineeringModule = ({
         message.warning('No active project. Open or create a project first.');
         return;
       }
-      const updateResponse = await fetch(`${BASE_URL}projects/${projectId}/`, {
+      const updateResponse = await fetch(`${BASE_URL}api/projects/${projectId}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

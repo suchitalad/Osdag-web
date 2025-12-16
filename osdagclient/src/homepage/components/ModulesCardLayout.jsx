@@ -60,6 +60,7 @@ const TabbedModulePage = () => {
     const safeProjectName = (projectName || `${selectedModule.label} Project`).replace(/\s+/g, "_");
     try {
       const token = getAccessToken();
+      // const cleanedBase = apiBase.replace(/api\/?$/, "");
       const response = await fetch(`${apiBase}api/projects/`, {
         method: "POST",
         headers: {

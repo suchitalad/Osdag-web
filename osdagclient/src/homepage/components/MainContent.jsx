@@ -24,6 +24,7 @@ const MainContent = () => {
   const fetchRecentProjects = async () => {
     setLoading(true);
     try {
+      // const cleanedBase = apiBase.replace(/api\/?$/, "");
       const url = `${apiBase}api/projects/`;
       const token = getAccessToken();
       const response = await fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } });
